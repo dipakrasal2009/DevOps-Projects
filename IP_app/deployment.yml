@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ip_viewer_app
+  name: ip-viewer-app
 spec:
   replicas: 1
   selector:
@@ -22,7 +22,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ip_app_service
+  name: ip-app-service
 spec:
   type: NodePort
   selector:
@@ -30,5 +30,5 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-      nodePort: 30036  # You can change this if needed
+      nodePort: 30050  # You can change this if needed
 
