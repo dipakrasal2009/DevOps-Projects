@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: k8s-ip-viewer-app
 spec:
-  replicas: 1
+  replicas: 8
   selector:
     matchLabels:
       app: ip-app
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ip-app
-          image: dipakrasal2009/k8s-ip-viewer:latest
+          image: dipakrasal2009/ip-view:latest
           ports:
             - containerPort: 80
 
@@ -22,7 +22,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: k8s-ip-app-service
+  name: k8s-ip-app1
 spec:
   type: NodePort
   selector:
@@ -30,5 +30,4 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-      nodePort: 30040  # You can change this if needed
-
+      nodePort: 30080  # You can change this if nee
