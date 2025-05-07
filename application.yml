@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     directory: 
-      include: 'deployment.yml,nginx-deployment.yaml'
+      include: 'deployment.yml,nginx-deployment.yml'
     repoURL: https://github.com/dipakrasal2009/DevOps-Projects.git
     targetRevision: HEAD
     path: menifest
