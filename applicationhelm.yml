@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp-argo-helm-application
+  namespace: argocd
+spec:
+  project: default
+  source:
+    # directory: 
+    # include: 'deployment.yml,nginx-deployment.yml'
+    repoURL: https://github.com/dipakrasal2009/DevOps-Projects.git
+    targetRevision: HEAD
+    path: myHelmChart/dipakchart
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: myhelmapp
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
