@@ -6,6 +6,8 @@ metadata:
 spec:
   project: default
   source:
+    directory: 
+      include: 'deployment.yml,nginx-deployment.yaml'
     repoURL: https://github.com/dipakrasal2009/DevOps-Projects.git
     targetRevision: HEAD
     path: menifest
