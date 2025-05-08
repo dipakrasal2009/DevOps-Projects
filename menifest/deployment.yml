@@ -24,7 +24,7 @@ kind: Service
 metadata:
   name: k8s-ip-app1
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: ip-app
   ports:
