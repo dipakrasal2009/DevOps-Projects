@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
     - name: master
-      image: dipakrasal2009/ansible-ready-image
+      image: dipakrasal2009/ansible-base
       ports:
         - containerPort: 22
       securityContext:
