@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jenkins
+  template:
+    metadata:
+      labels:
+        app: jenkins
+    spec:
+      containers:
+        - name: jenkins
+          image: ubuntu:22.04
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              apt-get update && \
+              apt-get install -y openjdk-17-jdk wget git curl unzip sudo && \
+              mkdir -p /opt/jenkins && \
+              cd /opt/jenkins && \
+              wget https://get.jenkins.io/war-stable/2.426.1/jenkins.war && \
+              java -jar jenkins.war
+          ports:
+            - containerPort: 8080
+            - containerPort: 50000
+          volumeMounts:
+            - name: jenkins-vol
+              mountPath: /var/jenkins_home
+      volumes:
+        - name: jenkins-vol
+          persistentVolumeClaim:
+            claimName: jenkins-pvc
+
