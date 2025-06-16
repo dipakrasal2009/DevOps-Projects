@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git 'https://github.com/dipakrasal2009/DevOps-Projects.git'
+                echo 'Repository already cloned by Jenkins.'
             }
         }
         stage('Build') {
