@@ -1,0 +1,29 @@
+# ~/project/playbook.yml
+
+- name: Build Docker Image and Deploy to Kubernetes
+  hosts: localhost
+  connection: local
+    #  become: yes
+  vars:
+    image_name: webapp1:latest
+    app_path: /home/hppc/Desktop/github/DevOps-Projects/Project3/app
+    k8s_path: /home/hppc/Desktop/github/DevOps-Projects/Project3/k8s
+
+  tasks:
+    - name: Build Docker Image
+      docker_image:
+        name: "{{ image_name }}"
+        build:
+          path: "{{ app_path }}"
+        source: build
+
+    - name: Apply Deployment
+      command: kubectl apply -f {{ k8s_path }}/deployment.yml
+      args:
+        chdir: "{{ k8s_path }}"
+
+    - name: Apply Service
+      command: kubectl apply -f {{ k8s_path }}/service.yml
+      args:
+        chdir: "{{ k8s_path }}"
+
