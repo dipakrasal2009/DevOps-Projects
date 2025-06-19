@@ -1,21 +1,26 @@
-# ~/project/playbook.yml
-
 - name: Build Docker Image and Deploy to Kubernetes
   hosts: localhost
   connection: local
-    #  become: yes
   vars:
-    image_name: webapp1:latest
+    image_name: dipakrasal2009/app1:latest   # Replace with your Docker Hub image name
     app_path: /home/hppc/Desktop/github/DevOps-Projects/Project3/app
     k8s_path: /home/hppc/Desktop/github/DevOps-Projects/Project3/k8s
+    dockerhub_username: dipakrasal2009
+    dockerhub_password: dipakcode2009
 
   tasks:
+    - name: Login to Docker Hub
+      docker_login:
+        username: "{{ dockerhub_username }}"
+        password: "{{ dockerhub_password }}"
+
     - name: Build Docker Image
       docker_image:
         name: "{{ image_name }}"
         build:
           path: "{{ app_path }}"
         source: build
+        push: yes   # Automatically pushes after build
 
     - name: Apply Deployment
       command: kubectl apply -f {{ k8s_path }}/deployment.yml

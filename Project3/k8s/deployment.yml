@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: dipakrasal2009/webapp1wq  # Make sure the image is built on the node
+        image: dipakrasal2009/app1:latest
         ports:
         - containerPort: 80
 
