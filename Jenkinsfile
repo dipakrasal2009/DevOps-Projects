@@ -5,12 +5,6 @@ pipeline {
         IMAGE_NAME = "localhost:5000/my-app1"
     }
 
-    stages {
-        stage('Clone Repo') {
-            steps {
-                git 'https://github.com/your-username/sample-app.git'
-            }
-        }
 
         stage('Build Docker Image') {
             steps {
