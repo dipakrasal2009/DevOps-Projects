@@ -1,23 +1,13 @@
-# Dockerfile
-FROM ubuntu:22.04
+FROM python:3.9-slim
 
-# Install Java and dependencies
-RUN apt update && \
-    apt install -y openjdk-17-jdk curl git && \
-    apt clean
+WORKDIR /app
 
-# Add Jenkins user
-RUN useradd -m -s /bin/bash jenkins
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
-# Set working directory
-WORKDIR /home/jenkins
+COPY . .
 
-# Download Jenkins .war file
-RUN curl -L -o jenkins.war https://get.jenkins.io/war-stable/latest/jenkins.war
+EXPOSE 80
 
-# Expose port
-EXPOSE 8080
-
-# Run Jenkins
-CMD ["java", "-jar", "jenkins.war"]
+CMD ["python", "app.py"]
 
