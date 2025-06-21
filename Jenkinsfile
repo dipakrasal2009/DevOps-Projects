@@ -2,50 +2,20 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "dipak-app"
-        TAG = "latest"
-        REGISTRY = "localhost:5000" // Update if using custom IP:PORT
+        IMAGE_NAME = "localhost:5000/my-app1"
     }
 
     stages {
-
-        stage('Clone Repo') {
-            steps {
-                git branch: 'main', url: 'https://github.com/dipakrasal2009/DevOps-Projects.git'
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
-                script {
-                    sh "docker build -t ${IMAGE_NAME}:${TAG} ."
-                }
-            }
-        }
-
-        stage('Tag Image for Registry') {
-            steps {
-                script {
-                    sh "docker tag ${IMAGE_NAME}:${TAG} ${REGISTRY}/${IMAGE_NAME}:${TAG}"
-                }
+                sh 'docker build -t $IMAGE_NAME .'
             }
         }
 
         stage('Push to Local Registry') {
             steps {
-                script {
-                    sh "docker push ${REGISTRY}/${IMAGE_NAME}:${TAG}"
-                }
+                sh 'docker push $IMAGE_NAME'
             }
-        }
-    }
-
-    post {
-        success {
-            echo '✅ Build and push successful!'
-        }
-        failure {
-            echo '❌ Build or push failed.'
         }
     }
 }
