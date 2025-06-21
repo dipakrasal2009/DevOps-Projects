@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "localhost:5000/my-app"
+        IMAGE_NAME = "localhost:5000/my-app1"
     }
 
     stages {
