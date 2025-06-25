@@ -32,9 +32,12 @@ pipeline {
 
         stage('Run Ansible') {
             steps {
-                script {
-                    sh 'ansible-playbook -i ansible/hosts ansible/deploy.yml'
-                }
+                   script {
+            		sh '''
+                	    export LC_ALL=en_US.UTF-8
+                	    export LANG=en_US.UTF-8
+                	    ansible-playbook -i ansible/hosts ansible/deploy.yml
+            		'''
             }
         }
     }
