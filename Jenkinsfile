@@ -36,7 +36,7 @@ pipeline {
                     sh '''
                         export LC_ALL=en_US.UTF-8
                         export LANG=en_US.UTF-8
-                        ansible-playbook -i ansible/hosts ansible/deploy.yml
+                        ansible-playbook -i inventory.ini ansible/deploy.yml
                     '''
                 }
             }
