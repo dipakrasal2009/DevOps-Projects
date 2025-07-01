@@ -13,5 +13,5 @@
         image: dipakrasal2009/abcd:latest
         state: started
         ports:
-          - "80:80"
+          - "65:80"
 
