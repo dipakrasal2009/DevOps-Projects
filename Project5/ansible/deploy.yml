@@ -1,0 +1,17 @@
+---
+- hosts: web
+  become: yes
+  tasks:
+    - name: Stop existing container
+      docker_container:
+        name: myapp
+        state: absent
+
+    - name: Run new container
+      docker_container:
+        name: myapp
+        image: dipakrasal2009/abcd:latest
+        state: started
+        ports:
+          - "65:80"
+
